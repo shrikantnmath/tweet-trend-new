@@ -13,11 +13,13 @@ environment {
                 cleanWs()
             }
         }
+        
         stage('Git Clone') {
             steps {
                 git branch: 'main', url: 'https://github.com/shrikantnmath/tweet-trend-new.git'
             }
         }
+        
         stage("build"){
             steps {
                  echo "----------- build started ----------"
@@ -25,15 +27,26 @@ environment {
                  echo "----------- build complted ----------"
             }
         }
+
+        stage("test"){
+            steps{
+                echo "----------- unit test started ----------"
+                sh 'mvn surefire-report:report'
+                 echo "----------- unit test Complted ----------"
+            }
+        }
+        
         stage('SonarQube analysis') {
     environment {
       scannerHome = tool 'sonar-scanner'
     }
+            
     steps{
     withSonarQubeEnv('sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
       sh "${scannerHome}/bin/sonar-scanner"
     }
        }
+            
       }
     }
 }
