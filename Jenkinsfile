@@ -14,13 +14,13 @@ environment {
             }
         }
         
-        stage('Git Clone') {
+        stage('GIT CHECKOUT') {
             steps {
                 git branch: 'main', url: 'https://github.com/shrikantnmath/tweet-trend-new.git'
             }
         }
         
-        stage("build"){
+        stage("BUILD"){
             steps {
                  echo "----------- build started ----------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
@@ -28,7 +28,7 @@ environment {
             }
         }
 
-        stage("test"){
+        stage("UNIT TEST"){
             steps{
                 echo "----------- unit test started ----------"
                 sh 'mvn surefire-report:report'
@@ -36,7 +36,7 @@ environment {
             }
         }
         
-    stage('SonarQube analysis') {
+    stage('SONARQBE ANALYSIS') {
     environment {
       scannerHome = tool 'sonar-scanner'
     }
@@ -48,7 +48,7 @@ environment {
             
       }
 
-    stage("Quality Gate"){
+    stage("QUALITY GATE"){
     steps {
         script {
         timeout(time: 5, unit: 'MINUTES') { // Just in case something goes wrong, pipeline will be killed after a timeout
