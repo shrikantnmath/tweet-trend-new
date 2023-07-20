@@ -110,6 +110,13 @@ environment {
             }
         }
     }
-    
+    stage("DEPLOY"){
+      steps {
+        script {
+          sh './deploy.sh'
+        }
+    }
+}
+        
     }
 }
