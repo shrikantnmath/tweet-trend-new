@@ -63,7 +63,7 @@ environment {
        }
         }
         }
-    stage("Jar Publish") {
+    stage("JAR PUBLISH") {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -89,7 +89,7 @@ environment {
         }   
     }
     
-    stage(" Docker Build ") {
+    stage(" DOCKER BUILD ") {
       steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
@@ -99,7 +99,7 @@ environment {
       }
     }
 
-    stage (" Docker Publish "){
+    stage (" DOCKER PUBLISH "){
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
